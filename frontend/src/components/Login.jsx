@@ -23,14 +23,18 @@ export default function Login() {
       // Initialize map if it doesn't exist yet
       if (!mapRef.current) {
         // Define coordinates
-        const londonCoordinates = [51.461883, -0.087581];
-        const glasgowCoordinates = [55.8642, -4.2518]; // Glasgow coordinates
+        // --- Define NEW coordinates ---
+        const lagosCoordinates = [6.5244, 3.3792];  // Lagos coordinates (Lat, Lng)
+        const abujaCoordinates = [9.0765, 7.3986];  // Abuja coordinates (Lat, Lng)
+        // -----------------------------
 
         // --- Calculate direction vector ---
-        const startLat = londonCoordinates[0];
-        const startLon = londonCoordinates[1];
-        const endLat = glasgowCoordinates[0];
-        const endLon = glasgowCoordinates[1];
+	// --- Calculate direction vector ---
+    // Use the new coordinates
+   	 const startLat = lagosCoordinates[0];
+   	 const startLon = lagosCoordinates[1];
+    	 const endLat = abujaCoordinates[0];
+   	 const endLon = abujaCoordinates[1];        
 
         const deltaLat = endLat - startLat; // Total change in latitude
         const deltaLon = endLon - startLon; // Total change in longitude
@@ -44,7 +48,7 @@ export default function Login() {
 
         // Create map centered on London
         const map = L.map('map-background', {
-          center: londonCoordinates,
+          center: lagosCoordinates,
           zoom: 10, // Lower zoom to show more of the UK
           zoomControl: false,
           attributionControl: false,
@@ -93,7 +97,7 @@ export default function Login() {
             document.getElementById('map-background').style.opacity = 0;
 
             setTimeout(() => {
-              map.panTo(londonCoordinates, { animate: false }); // Reset to London
+              map.panTo(lagosCoordinates, { animate: false }); // Reset to London
               document.getElementById('map-background').style.opacity = 1;
 
               // Restart the movement
